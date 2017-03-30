@@ -6,5 +6,5 @@ package com.jossing.runboapple.welcome.view;
 
 public interface IWelcomeActivity {
 
-
+    void showWelcomePicture(String pictureURL);
 }

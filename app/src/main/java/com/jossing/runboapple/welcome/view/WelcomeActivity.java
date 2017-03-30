@@ -3,7 +3,6 @@ package com.jossing.runboapple.welcome.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,9 +16,6 @@ import com.jossing.runboapple.welcome.presenter.WelcomePresenter;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import cn.bmob.v3.AsyncCustomEndpoints;
-import cn.bmob.v3.listener.CloudCodeListener;
 
 public class WelcomeActivity extends AppCompatActivity
         implements View.OnClickListener, IWelcomeActivity {
@@ -83,25 +79,20 @@ public class WelcomeActivity extends AppCompatActivity
         btnSkip = (Button) findViewById(R.id.btn_skip);
         btnSkip.setOnClickListener(this);
         imvWelcome = (ImageView) findViewById(R.id.imv_welcome);
+        presenter.showWelcomePicture(this);
+    }
 
-        AsyncCustomEndpoints ace = new AsyncCustomEndpoints();
-        ace.callEndpoint(this, "getWelcomePicture", new CloudCodeListener() {
-            @Override
-            public void onSuccess(Object o) {
-                // Log.e("response", o.toString());
-                String pictureURL = o.toString();
-                Glide.with(WelcomeActivity.this)
-                        .load(pictureURL)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL) //让 Glide 既缓存全尺寸又缓存其他尺寸
-                        .error(R.drawable.ic_warning_black_128dp)
-                        .centerCrop()
-                        .into(imvWelcome);
-            }
-            @Override
-            public void onFailure(int i, String s) {
-                Log.e("error", "\ncode: " + i + "\nmsg: " + s);
-            }
-        });
+    /**
+     * 显示广告图片
+     * @param pictureURL 图片的 url 地址
+     */
+    @Override
+    public void showWelcomePicture(String pictureURL) {
+        Glide.with(this).load(pictureURL)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //让 Glide 既缓存全尺寸又缓存其他尺寸
+                .error(R.drawable.ic_warning_black_128dp)
+                .centerCrop()
+                .into(imvWelcome);
     }
 
     /**
