@@ -15,7 +15,7 @@ public class WelcomePresenter implements IWelcomePresenter {
 
     @Override
     public String getWelcomePictureURL() {
-        // BmobQuery<GameScore> query = new BmobQuery<GameScore>();
+        // BmobQuery<GameScore> query = new BmobQuery<GameScore>(); oo
         return null;
     }
 }
