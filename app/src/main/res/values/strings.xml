@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">润波苹果</string>
+
+
+    <!-- welcome activity-->
+    <string name="skip">跳过>></string>
+
+
+    <!-- apple fragment menu -->
+    <string name="list_layout">列表布局</string>
+    <string name="grid_layout">栅格布局</string>
+
+
+    <!-- apple detailed activity -->
+    <string name="apple_detailed_activity_title">详情</string>
+
+
+    <!-- confer activity -->
+    <string name="confer_activity_title">商议</string>
+
+</resources>

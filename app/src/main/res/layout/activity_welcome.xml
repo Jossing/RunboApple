@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_welcome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.jossing.runboapple.welcome.WelcomeActivity">
+
+    <ImageView
+        android:id="@+id/imv_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/ll_welcome"
+        android:contentDescription="Welcome Image"
+        android:scaleType="centerInside"/>
+
+    <LinearLayout
+        android:id="@+id/ll_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:clipToPadding="false">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="APP Logo"
+            android:src="@mipmap/ic_launcher_round"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/app_name"
+            android:textSize="16sp"
+            android:textColor="@color/textPrimaryLight" />
+
+        <Button
+            android:id="@+id/btn_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skip"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/my_button_shape"
+            style="@style/Widget.AppCompat.Button.Borderless"/>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="96dp"
+    android:paddingStart="0dp"
+    android:paddingEnd="16dp"
+    android:clickable="true"
+    android:background="?selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/imv"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imv"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="红富士苹果"
+        android:textSize="16sp"
+        android:textColor="@color/textPrimaryLight"/>
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imv"
+        android:layout_marginStart="8dp"
+        android:paddingTop="4dp"
+        android:layout_centerVertical="true"
+        android:text="河北衡水"
+        android:textSize="14sp"
+        android:textColor="@color/textSecondaryLight"/>
+
+    <TextView
+        android:id="@+id/tv_quality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_name"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:text="A 级"
+        android:textSize="16sp"
+        android:textColor="@color/textPrimaryLight"/>
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/imv"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="供货："
+        android:textSize="14sp"
+        android:textColor="@color/textSecondaryLight"/>
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv"
+        android:layout_toEndOf="@+id/tv"
+        android:text="1000 kg"
+        android:textSize="14sp"
+        android:textColor="@color/colorPrimary"/>
+
+</RelativeLayout>
