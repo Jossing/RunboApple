@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".welcome.WelcomeActivity"
+            android:name=".welcome.view.WelcomeActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar.Fullscreen">
             <intent-filter>

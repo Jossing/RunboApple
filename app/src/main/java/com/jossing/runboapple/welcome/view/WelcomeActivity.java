@@ -1,4 +1,4 @@
-package com.jossing.runboapple.welcome;
+package com.jossing.runboapple.welcome.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.jossing.runboapple.R;
 import com.jossing.runboapple.main.view.MainActivity;
+import com.jossing.runboapple.welcome.presenter.IWelcomePresenter;
+import com.jossing.runboapple.welcome.presenter.WelcomePresenter;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,35 +21,37 @@ import java.util.TimerTask;
 import cn.bmob.v3.AsyncCustomEndpoints;
 import cn.bmob.v3.listener.CloudCodeListener;
 
-public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class WelcomeActivity extends AppCompatActivity
+        implements View.OnClickListener, IWelcomeActivity {
+
+    private IWelcomePresenter presenter;
 
     private Timer timer;
 
     private Button btnSkip;
     private ImageView imvWelcome;
 
+    private final long DELAY = 3000; //自动跳转的延时
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        // 12345
+        presenter = new WelcomePresenter(this);
+
         initWidget();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        autoStartMainActivity();
+        autoStartMainActivity(DELAY);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // 如果 timer 正在执行，就取消他
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
+        cancelTimer();
     }
 
     @Override
@@ -55,16 +59,24 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()) {
             case R.id.btn_skip:
                 // btnSkip
-                if (timer != null) {
-                    timer.cancel();
-                    timer = null;
-                }
+                cancelTimer();
                 startMainActivity();
                 break;
         }
     }
 
-    /*
+    /**
+     * 如果 timer 正在执行，就取消他
+     */
+    private void cancelTimer() {
+        // 如果 timer 正在执行，就取消他
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+    }
+
+    /**
      * 实例化、初始化所有控件
      */
     private void initWidget() {
@@ -92,10 +104,11 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    /*
-     * 延迟 3 秒后自动进入主界面
+    /**
+     * 延迟 delay 秒后自动进入主界面
+     * @param delay 延时
      */
-    private void autoStartMainActivity() {
+    private void autoStartMainActivity(long delay) {
         timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -103,10 +116,10 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 startMainActivity();
             }
         };
-        timer.schedule(timerTask, 3000);
+        timer.schedule(timerTask, delay);
     }
 
-    /*
+    /**
      * 启动主界面
      */
     private void startMainActivity() {
