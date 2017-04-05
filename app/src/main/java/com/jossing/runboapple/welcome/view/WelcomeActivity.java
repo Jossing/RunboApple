@@ -88,8 +88,12 @@ public class WelcomeActivity extends AppCompatActivity
      */
     @Override
     public void showWelcomePicture(String pictureURL) {
+        // 如果 activity 已经不存在了就跳过这个方法
+        if (isDestroyed() || isFinishing()) { return; }
+
         Glide.with(this).load(pictureURL)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //让 Glide 既缓存全尺寸又缓存其他尺寸
+                .crossFade(120)
                 .error(R.drawable.ic_warning_black_128dp)
                 .centerCrop()
                 .into(imvWelcome);

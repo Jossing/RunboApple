@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.jossing.runboapple.R;
-import com.jossing.runboapple.model.Apple;
+import com.jossing.runboapple.main.model.Apple;
 
 public class ConferActivity extends AppCompatActivity {
     private Apple apple;

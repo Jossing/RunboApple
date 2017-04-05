@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
         appleFragment = new AppleFragment();
         promotionFragment = new PromotionFragment();
         mineFragment = new MineFragment();
+        // fixSomeFragmentBug(); 然而这个方法并没有什么用
         // 初始化 BottomNavigationView
         bnv = (BottomNavigationView) findViewById(R.id.bnv);
         Menu bnvMenu = bnv.getMenu();
@@ -93,6 +94,18 @@ public class MainActivity extends AppCompatActivity
                     .commit();
         }
         fromFragment = toFragment; // 更新当前 fragment
+    }
+
+    /**
+     * 希望可以避免一些奇怪的问题
+     */
+    private void fixSomeFragmentBug() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .remove(appleFragment)
+                .remove(promotionFragment)
+                .remove(mineFragment)
+                .commit();
     }
 
     @Override

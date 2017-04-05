@@ -1,6 +1,6 @@
 package com.jossing.runboapple.main.view;
 
-import com.jossing.runboapple.model.Apple;
+import com.jossing.runboapple.main.model.Apple;
 
 import java.util.List;
 
@@ -10,5 +10,9 @@ import java.util.List;
 
 public interface IAppleFragment {
 
-    void setAppleAdapterData(List<Apple> appleList);
+    /**
+     * 当苹果列表获取完成
+     * @param appleList 苹果列表
+     */
+    void onLoadAppleListSuccess(List<Apple> appleList);
 }

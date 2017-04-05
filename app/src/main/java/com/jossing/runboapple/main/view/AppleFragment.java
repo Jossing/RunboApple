@@ -15,12 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jossing.runboapple.MyApplication;
+import com.jossing.runboapple.RunboAppleApplication;
 import com.jossing.runboapple.R;
 import com.jossing.runboapple.main.adapter.AppleAdapter;
+import com.jossing.runboapple.main.model.Apple;
 import com.jossing.runboapple.main.presenter.AppleFGPresenter;
 import com.jossing.runboapple.main.presenter.IAppleFGPresenter;
-import com.jossing.runboapple.model.Apple;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class AppleFragment extends Fragment implements IAppleFragment {
         initWidget();
 
         // 获取苹果列表
-        presenter.loadAppleList(19);
+        presenter.loadAppleList(getActivity(), 19);
 
         return rootView;
     }
@@ -74,16 +74,16 @@ public class AppleFragment extends Fragment implements IAppleFragment {
     }
 
     @Override
-    public void setAppleAdapterData(List<Apple> appleList) {
-        appleAdapter.setData(appleList);
+    public void onLoadAppleListSuccess(List<Apple> appleList) {
+        appleAdapter.setAppleList(appleList);
     }
 
     /**
      * 切换 recyclerView 的布局方式
      */
     private void switchLayoutManager() {
-        int dp4 = Math.round(MyApplication.density * 4);
-        int dp60 = Math.round(MyApplication.density * 60);
+        int dp4 = Math.round(RunboAppleApplication.density * 4);
+        int dp60 = Math.round(RunboAppleApplication.density * 60);
         if (rvApple.getLayoutManager().equals(linearLayoutManager)) {
             /* 从 linear 切换到 grid */
             // 修改布局管理器

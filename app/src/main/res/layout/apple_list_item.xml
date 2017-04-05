@@ -15,41 +15,68 @@
         android:layout_marginBottom="4dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:src="@drawable/bg"
         android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/imv"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:lines="1"
         android:text="红富士苹果"
         android:textSize="16sp"
-        android:textColor="@color/textPrimaryLight"/>
+        android:textColor="@color/textPrimaryLight" />
 
     <TextView
-        android:id="@+id/tv_address"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="28dp"
         android:layout_toEndOf="@+id/imv"
-        android:layout_marginStart="8dp"
-        android:paddingTop="4dp"
-        android:layout_centerVertical="true"
-        android:text="河北衡水"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="红富士苹果红富士苹果红富士苹果红富士苹果"
         android:textSize="14sp"
-        android:textColor="@color/textSecondaryLight"/>
+        android:textColor="@color/textSecondaryLight" />
 
     <TextView
         android:id="@+id/tv_quality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/tv_name"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/imv"
+        android:layout_marginTop="28dp"
+        android:lines="1"
         android:text="A 级"
-        android:textSize="16sp"
-        android:textColor="@color/textPrimaryLight"/>
+        android:textSize="14sp"
+        android:textColor="@color/textSecondaryLight"/>
+
+    <TextView
+        android:id="@+id/splitter1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/tv_quality"
+        android:layout_alignBaseline="@+id/tv_quality"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="|"
+        android:textSize="14sp"
+        android:textColor="@color/textSecondaryLight"/>
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/splitter1"
+        android:layout_alignBottom="@+id/tv_quality"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="河北衡水"
+        android:textSize="14sp"
+        android:textColor="@color/textSecondaryLight"/>
 
     <TextView
         android:id="@+id/tv"
@@ -57,20 +84,32 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/imv"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="供货："
-        android:textSize="14sp"
-        android:textColor="@color/textSecondaryLight"/>
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="-2dp"
+        android:text="￥"
+        android:textSize="12sp"
+        android:textColor="@color/colorRed"/>
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:text="30/kg"
+        android:textSize="16sp"
+        android:textColor="@color/colorRed"
+        android:layout_alignBottom="@+id/tv"
+        android:layout_toEndOf="@+id/tv" />
 
     <TextView
         android:id="@+id/tv_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/tv"
-        android:layout_toEndOf="@+id/tv"
-        android:text="1000 kg"
+        android:layout_alignBottom="@id/tv_price"
+        android:layout_toEndOf="@+id/tv_price"
+        android:lines="1"
+        android:text=" (1000 kg)"
         android:textSize="14sp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorRed"/>
 
 </RelativeLayout>

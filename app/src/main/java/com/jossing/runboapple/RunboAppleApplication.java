@@ -9,7 +9,8 @@ import cn.bmob.v3.BmobConfig;
  * @author Jossing , Create on 2017/3/16
  */
 
-public class MyApplication extends Application {
+public class RunboAppleApplication extends Application {
+    // 设备屏幕缩放级别
     public static float density;
 
     @Override
@@ -32,4 +33,5 @@ public class MyApplication extends Application {
                 .build();
         Bmob.initialize(config);
     }
+
 }

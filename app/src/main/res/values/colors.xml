@@ -9,4 +9,6 @@
     <color name="textSecondaryDark">#8affffff</color>
     <color name="textPrimaryLight">#de000000</color>
     <color name="textSecondaryLight">#8a000000</color>
+
+    <color name="colorRed">#FF1744</color>
 </resources>
