@@ -49,7 +49,7 @@ public class ApplePicturePagerAdapter extends PagerAdapter {
         }
         notifyDataSetChanged();
         // 手动加载 position 0 的图片
-        loadApplePicture(context, 0);
+        if (count > 0) loadApplePicture(context, 0);
     }
 
     /**
@@ -140,9 +140,9 @@ public class ApplePicturePagerAdapter extends PagerAdapter {
 
     @Override
     public int getItemPosition(Object object) {
-        if (viewList.contains((View) object)) {
+        if (viewList.contains((ImageView) object)) {
             Log.e("view is contains", true + "");
-            return viewList.indexOf((View) object);
+            return viewList.indexOf((ImageView) object);
         } else {
             Log.e("view is contains", false + "");
             return POSITION_NONE;

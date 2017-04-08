@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.jossing.runboapple.R;
+import com.jossing.runboapple.customview.ViewPagerWithIndicator;
 import com.jossing.runboapple.main.adapter.ApplePicturePagerAdapter;
 import com.jossing.runboapple.main.model.Apple;
 import com.jossing.runboapple.main.model.ApplePicture;
@@ -26,11 +27,13 @@ public class AppleDetailedActivity extends AppCompatActivity
     private IAppleDetailedPresenter presenter;
 
     private Toolbar toolbar;
+    private ViewPagerWithIndicator vpImvWithIndicator;
     private ViewPager vpImv;
     private ApplePicturePagerAdapter pagerAdapter;
     private TextView tvName;
     private TextView tvQuality;
     private TextView tvAddress;
+    private TextView tvSeller;
     private TextView tvDescription;
     private TextView tvCount;
     private TextView tvPrice;
@@ -62,12 +65,13 @@ public class AppleDetailedActivity extends AppCompatActivity
      * 实例化所有控件
      */
     private void initWidget() {
-        vpImv = (ViewPager) findViewById(R.id.vp_imv);
-        pagerAdapter = new ApplePicturePagerAdapter();
-        vpImv.setAdapter(pagerAdapter);
+        vpImvWithIndicator = (ViewPagerWithIndicator) findViewById(R.id.vp_imv_indicator);
+        vpImv = vpImvWithIndicator.getViewPager();
+        pagerAdapter = new ApplePicturePagerAdapter(); // 准备好 adapter 的数据再设置给 viewpager
         tvName = (TextView) findViewById(R.id.tv_name);
         tvQuality = (TextView) findViewById(R.id.tv_quality);
         tvAddress = (TextView) findViewById(R.id.tv_address);
+        tvSeller = (TextView) findViewById(R.id.tv_seller);
         tvDescription = (TextView) findViewById(R.id.tv_description);
         tvCount = (TextView) findViewById(R.id.tv_count);
         tvPrice = (TextView) findViewById(R.id.tv_price);
@@ -114,7 +118,14 @@ public class AppleDetailedActivity extends AppCompatActivity
 
     @Override
     public void onQueryPictureListSuccess(List<ApplePicture> applePictureList) {
+        ApplePicture applePicture = new ApplePicture();
+        applePicture.setApple(apple);
+        applePicture.setPicture(apple.getPicture());
+        applePictureList.add(0, applePicture);
         pagerAdapter.setApplePictureList(this, applePictureList);
+
+        // 设置适配器
+        vpImv.setAdapter(pagerAdapter);
     }
 
     @Override

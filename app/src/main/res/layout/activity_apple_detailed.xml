@@ -25,18 +25,18 @@
                 android:paddingBottom="8dp"
                 android:clipToPadding="false">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_imv"
+                <com.jossing.runboapple.customview.ViewPagerWithIndicator
+                    android:id="@+id/vp_imv_indicator"
                     android:layout_width="match_parent"
                     android:layout_height="336dp"
-                    android:background="@android:color/darker_gray"/>
+                    android:background="@android:color/darker_gray" />
 
                 <!-- 描述 -->
                 <RelativeLayout
                     android:id="@+id/rl_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/vp_imv"
+                    android:layout_below="@+id/vp_imv_indicator"
                     android:background="@android:color/background_light">
 
                     <TextView
@@ -70,21 +70,37 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="10dp"
                         android:lineSpacingExtra="2dp"
                         android:text="甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜甜"
+                        android:textSize="16sp"
+                        android:textColor="@color/textSecondaryLight"/>
+
+                    <ImageView
+                        android:id="@+id/imv_address"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/tv_description"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
+                        app:srcCompat="@drawable/ic_source_address_black_24dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_alignBottom="@+id/imv_address"
+                        android:layout_toEndOf="@+id/imv_address"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center_vertical"
+                        android:text="河北衡水"
                         android:textSize="14sp"
                         android:textColor="@color/textSecondaryLight"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.5dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#33000000"/>
-
                 </RelativeLayout>
 
-                <!-- 原产地 -->
+                <!-- 原产地
                 <RelativeLayout
                     android:id="@+id/rl_2"
                     android:layout_width="match_parent"
@@ -111,14 +127,14 @@
                         android:textSize="16sp"
                         android:textColor="@color/textPrimaryLight"/>
 
-                </RelativeLayout>
+                </RelativeLayout> -->
 
                 <!-- 卖家信息 -->
                 <RelativeLayout
                     android:id="@+id/rl_3"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_below="@+id/rl_2"
+                    android:layout_below="@+id/rl_1"
                     android:layout_marginTop="8dp"
                     android:background="@android:color/background_light">
 
@@ -137,11 +153,20 @@
                         android:gravity="center_vertical"
                         android:paddingStart="72dp"
                         android:paddingEnd="16dp"
-                        android:text="User_1"
+                        android:text="卖家"
                         android:textSize="16sp"
                         android:textColor="@color/textPrimaryLight"
                         android:clickable="true"
                         android:background="?selectableItemBackground" />
+
+                    <ImageView
+                        android:id="@+id/imv_seller_in"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        app:srcCompat="@drawable/ic_chevron_right_black_24dp"/>
 
                 </RelativeLayout>
 
