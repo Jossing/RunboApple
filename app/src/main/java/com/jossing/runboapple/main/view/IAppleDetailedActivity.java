@@ -1,6 +1,7 @@
 package com.jossing.runboapple.main.view;
 
 import com.jossing.runboapple.main.model.ApplePicture;
+import com.jossing.runboapple.usermanage.model.User;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface IAppleDetailedActivity {
 
 
     void onQueryPictureListSuccess(List<ApplePicture> applePictureList);
+
+    void onQuerySellerSuccess(User seller);
 }

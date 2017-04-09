@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- come from xiaoming -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <!-- 头像条 -->
+    <RelativeLayout
+        android:id="@+id/personal_rl_avatar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/background_light">
+
+        <TextView
+            android:id="@+id/personal_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="头像"
+            android:textSize="16sp"
+            android:textColor="@color/textPrimaryLight"
+            android:clickable="true"
+            android:background="?selectableItemBackground" />
+
+        <ImageView
+            android:id="@+id/imv_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/def_avatar"/>
+
+    </RelativeLayout>
+
+    <!-- 用户名条 -->
+    <RelativeLayout
+        android:id="@+id/personal_rl_username"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/background_light">
+
+        <TextView
+            android:id="@+id/personal_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:gravity="center_vertical"
+            android:text="用户名"
+            android:textSize="16sp"
+            android:textColor="@color/textPrimaryLight" />
+
+        <TextView
+            android:id="@+id/personal_tv_username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="16sp"
+            android:clickable="true"
+            android:background="?selectableItemBackground" />
+
+    </RelativeLayout>
+
+    <!-- 昵称条 -->
+    <RelativeLayout
+        android:id="@+id/personal_rl_nick"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/background_light">
+
+        <TextView
+            android:id="@+id/personal_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:text="昵称"
+            android:textSize="16sp"
+            android:textColor="@color/textPrimaryLight" />
+
+        <TextView
+            android:id="@+id/personal_tv_nick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:paddingStart="16sp"
+            android:paddingEnd="@dimen/personal_padding_right"
+            android:textSize="16sp"
+            android:clickable="true"
+            android:background="?selectableItemBackground" />
+
+    </RelativeLayout>
+
+    <!-- 性别条 -->
+    <RelativeLayout
+        android:id="@+id/personal_rl_sex"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/background_light">
+
+        <TextView
+            android:id="@+id/personal_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:text="性别"
+            android:textSize="16sp"
+            android:textColor="@color/textPrimaryLight" />
+
+        <TextView
+            android:id="@+id/personal_tv_sex"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="end|center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="@dimen/personal_padding_right"
+            android:textSize="16sp"
+            android:clickable="true"
+            android:background="?selectableItemBackground" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/personal_btn_exit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="退出当前账号"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_personal_exit"
+        style="@style/Widget.AppCompat.Button.Borderless" />
+
+</LinearLayout>

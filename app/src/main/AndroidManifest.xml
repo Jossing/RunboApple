@@ -52,6 +52,20 @@
             android:label="@string/confer_activity_title"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <!-- come from xiaoming -->
+        <activity
+            android:theme="@style/AppTheme.translucent"
+            android:name=".usermanage.view.UserManageActivity"
+            android:launchMode="singleTask"/>
+
+        <activity
+            android:name=".usermanage.view.PersonActivity"
+            android:label="@string/personal_center"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <!-- come from xiaoming -->
+
     </application>
 
 </manifest>

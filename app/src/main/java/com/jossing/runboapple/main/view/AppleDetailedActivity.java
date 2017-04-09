@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jossing.runboapple.R;
 import com.jossing.runboapple.customview.ViewPagerWithIndicator;
@@ -18,8 +19,13 @@ import com.jossing.runboapple.main.model.Apple;
 import com.jossing.runboapple.main.model.ApplePicture;
 import com.jossing.runboapple.main.presenter.AppleDetailedPresenter;
 import com.jossing.runboapple.main.presenter.IAppleDetailedPresenter;
+import com.jossing.runboapple.usermanage.view.PersonActivity;
+import com.jossing.runboapple.usermanage.model.User;
+import com.jossing.runboapple.usermanage.view.UserManageActivity;
 
 import java.util.List;
+
+import cn.bmob.v3.BmobUser;
 
 public class AppleDetailedActivity extends AppCompatActivity
         implements IAppleDetailedActivity, View.OnClickListener {
@@ -40,6 +46,8 @@ public class AppleDetailedActivity extends AppCompatActivity
     private Button btnWantBuy;
 
     private Apple apple;
+
+    public enum RequestCode { LOGIN }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +80,7 @@ public class AppleDetailedActivity extends AppCompatActivity
         tvQuality = (TextView) findViewById(R.id.tv_quality);
         tvAddress = (TextView) findViewById(R.id.tv_address);
         tvSeller = (TextView) findViewById(R.id.tv_seller);
+        tvSeller.setOnClickListener(this);
         tvDescription = (TextView) findViewById(R.id.tv_description);
         tvCount = (TextView) findViewById(R.id.tv_count);
         tvPrice = (TextView) findViewById(R.id.tv_price);
@@ -111,6 +120,8 @@ public class AppleDetailedActivity extends AppCompatActivity
         tvCount.setText(countStr);
         String priceStr = apple.getPrice() + "/kg";
         tvPrice.setText(priceStr);
+        // 查询卖家信息
+        presenter.querySeller(this, apple.getSeller().getObjectId());
 
         // 获取图片列表
         presenter.queryPictureList(this, apple);
@@ -129,6 +140,13 @@ public class AppleDetailedActivity extends AppCompatActivity
     }
 
     @Override
+    public void onQuerySellerSuccess(User seller) {
+        Log.e("seller", seller.getObjectId() + ", " + seller.getUsername());
+        apple.setSeller(seller);
+        tvSeller.setText(seller.getUsername());
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -141,11 +159,43 @@ public class AppleDetailedActivity extends AppCompatActivity
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_seller:
+                Intent intent1 = new Intent(this, PersonActivity.class);
+                String sellerId = apple.getSeller().getObjectId();
+                intent1.putExtra("anotherUserObjectId", sellerId);
+                startActivity(intent1);
+                break;
             case R.id.btn_want_buy:
-                Intent intent = new Intent(this, ConferActivity.class);
-                intent.putExtra("apple", apple);
-                startActivity(intent);
+                User currentUser = BmobUser.getCurrentUser(this, User.class);
+                if (currentUser != null) {
+                    intentToConferActivity();
+                } else {
+                    Intent intent2 = new Intent(this, UserManageActivity.class);
+                    startActivityForResult(intent2, RequestCode.LOGIN.ordinal());
+                    Toast.makeText(this, "登录后才可以购买苹果哦~", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RequestCode.LOGIN.ordinal()) {
+            if (resultCode == UserManageActivity.ResultCode.LOGIN_SUCCESS.ordinal()) {
+                User currentUser = BmobUser.getCurrentUser(this, User.class);
+                if (currentUser != null) {
+                    intentToConferActivity();
+                }
+            }
+        }
+    }
+
+    /**
+     * 跳转到交易界面
+     */
+    private void intentToConferActivity() {
+        Intent intent = new Intent(this, ConferActivity.class);
+        intent.putExtra("apple", apple);
+        startActivity(intent);
     }
 }

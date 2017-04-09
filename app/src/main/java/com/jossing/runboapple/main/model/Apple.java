@@ -2,8 +2,9 @@ package com.jossing.runboapple.main.model;
 
 import android.content.Context;
 
+import com.jossing.runboapple.usermanage.model.User;
+
 import cn.bmob.v3.BmobObject;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 
 /**
@@ -25,7 +26,7 @@ public class Apple extends BmobObject {
     // 商品价格
     private Double price;
     // 卖家
-    private BmobUser seller;
+    private User seller;
     // 图片
     private BmobFile picture;
 
@@ -54,7 +55,7 @@ public class Apple extends BmobObject {
         this.price = price;
     }
 
-    public void setSeller(BmobUser seller) {
+    public void setSeller(User seller) {
         this.seller = seller;
     }
 
@@ -86,7 +87,7 @@ public class Apple extends BmobObject {
         return price;
     }
 
-    public BmobUser getSeller() {
+    public User getSeller() {
         return seller;
     }
 

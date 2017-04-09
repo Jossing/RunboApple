@@ -10,6 +10,9 @@
     <string name="list_layout">列表布局</string>
     <string name="grid_layout">栅格布局</string>
 
+    <!-- mine fragment -->
+    <string name="mine_fragment_login">登录</string>
+
 
     <!-- apple detailed activity -->
     <string name="apple_detailed_activity_title">详情</string>
@@ -17,5 +20,16 @@
 
     <!-- confer activity -->
     <string name="confer_activity_title">商议</string>
+
+
+    <!-- user manage activity -->
+    <string name="et_username_digits">0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM</string>
+    <string name="et_password_digits">0123456789 qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-()!</string>
+
+
+
+    <!-- come from xiaoming -->
+    <string name="personal_center">个人中心</string>
+    <!-- come from xiaoming -->
 
 </resources>

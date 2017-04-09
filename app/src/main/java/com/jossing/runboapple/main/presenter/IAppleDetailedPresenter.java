@@ -11,4 +11,6 @@ import com.jossing.runboapple.main.model.Apple;
 public interface IAppleDetailedPresenter {
 
     void queryPictureList(Context context, Apple apple);
+
+    void querySeller(Context context, String sellerId);
 }

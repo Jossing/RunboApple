@@ -21,9 +21,23 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="ImPopupLayoutAnimation" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/push_bottom_in_2</item>
-        <item name="android:windowExitAnimation">@anim/push_bottom_out_2</item>
+
+
+    <!-- come from xiaoming -->
+    <style name="AppTheme.translucent">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/windowBackgroundTranslucent</item>
+        <item name="android:windowAnimationStyle">@style/ImPopupLayoutAnimation</item>
     </style>
+
+    <style name="ImPopupLayoutAnimation" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+    <!-- come from xiaoming -->
+
 
 </resources>

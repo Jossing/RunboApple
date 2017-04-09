@@ -53,7 +53,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/cv_avatar"
                 android:layout_marginTop="8dp"
-                android:text="登录"
+                android:text="@string/mine_fragment_login"
                 android:textSize="16sp"
                 android:textColor="@color/textPrimaryDark"/>
 

@@ -2,15 +2,15 @@
 <!-- come from xiaoming -->
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cl_imitate_wdj"
+    android:id="@+id/cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
+    android:background="@null"
     android:fitsSystemWindows="false">
 
-    <include layout="@layout/login"/>
-    <include layout="@layout/register_layout"
+    <include layout="@layout/activity_user_login"/>
+    <include layout="@layout/activity_user_register"
         android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>

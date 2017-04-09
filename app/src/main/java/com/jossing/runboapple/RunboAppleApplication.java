@@ -1,6 +1,8 @@
 package com.jossing.runboapple;
 
 import android.app.Application;
+import android.content.Context;
+import android.widget.Toast;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobConfig;
@@ -12,6 +14,8 @@ import cn.bmob.v3.BmobConfig;
 public class RunboAppleApplication extends Application {
     // 设备屏幕缩放级别
     public static float density;
+
+    private static Toast toast;
 
     @Override
     public void onCreate() {
@@ -32,6 +36,21 @@ public class RunboAppleApplication extends Application {
                 .setFileExpiration(2500)// 文件的过期时间(单位为秒)：默认 1800s
                 .build();
         Bmob.initialize(config);
+    }
+
+    /**
+     * 弹出一条 全局 Toast
+     * @param msg Toast 内容
+     * @param duration Toast 持续时间
+     */
+    public static void toastShow(Context context, String msg, int duration) {
+        if (toast == null) {
+            toast = Toast.makeText(context, msg, duration);
+        } else {
+            toast.setText(msg);
+            toast.setDuration(duration);
+        }
+        toast.show();
     }
 
 }

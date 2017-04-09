@@ -11,7 +11,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import com.jossing.runboapple.R;
 import com.jossing.runboapple.main.presenter.IMainPresenter;
 import com.jossing.runboapple.main.presenter.MainPresenter;
-import com.jossing.runboapple.mine.view.MineFragment;
+import com.jossing.runboapple.usermanage.view.MineFragment;
 import com.jossing.runboapple.promotion.view.PromotionFragment;
 
 /**
