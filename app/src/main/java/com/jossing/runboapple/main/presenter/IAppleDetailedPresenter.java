@@ -10,7 +10,9 @@ import com.jossing.runboapple.main.model.Apple;
 
 public interface IAppleDetailedPresenter {
 
-    void queryPictureList(Context context, Apple apple);
+    void queryApple(Context context, String appleId);
 
-    void querySeller(Context context, String sellerId);
+    void queryCommentCount(Context context, String appleId);
+
+    void queryPictureList(Context context, Apple apple);
 }

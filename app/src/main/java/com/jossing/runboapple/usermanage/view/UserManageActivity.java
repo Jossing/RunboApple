@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jossing.runboapple.R;
-import com.jossing.runboapple.RunboAppleApplication;
+import com.jossing.runboapple.RunboAppleApp;
 import com.jossing.runboapple.usermanage.presenter.IUserManagePresenter;
 import com.jossing.runboapple.usermanage.presenter.UserManagePresenter;
 
@@ -62,6 +62,25 @@ public class UserManageActivity extends AppCompatActivity implements IUserManage
         register_bt_register.setOnClickListener(this);
 
         setBackgroundAlpha(defaultAlpha);
+
+        /* 动画展开 bottom sheet */
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.push_bottom_in);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                animChangeBgAlpha(true, animation.getDuration());
+                // 设置两个 bottom sheet 为 Expanded
+                BottomSheetBehavior.from(ll_login).setState(BottomSheetBehavior.STATE_EXPANDED);
+                BottomSheetBehavior.from(ll_register).setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {}
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
+        });
+        ll_login.startAnimation(animation);
     }
 
     private void init(){
@@ -85,30 +104,6 @@ public class UserManageActivity extends AppCompatActivity implements IUserManage
         register_close = (ImageView)findViewById(R.id.register_close);
         register_close_space = findViewById(R.id.register_close_space);
         BottomSheetBehavior.from(ll_register).setBottomSheetCallback(callback);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // 动画展开 bottom sheet
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.push_bottom_in);
-        animation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                animChangeBgAlpha(true, animation.getDuration());
-                // 设置两个 bottom sheet 为 Expanded
-                BottomSheetBehavior.from(ll_login).setState(BottomSheetBehavior.STATE_EXPANDED);
-                BottomSheetBehavior.from(ll_register).setState(BottomSheetBehavior.STATE_EXPANDED);
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {}
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {}
-        });
-        ll_login.startAnimation(animation);
     }
 
     @Override
@@ -263,7 +258,7 @@ public class UserManageActivity extends AppCompatActivity implements IUserManage
     public void loginSuccess() {
         setResult(ResultCode.LOGIN_SUCCESS.ordinal());
         finish();
-        RunboAppleApplication.toastShow(this,"登录成功",Toast.LENGTH_SHORT);
+        RunboAppleApp.toastShow(this,"登录成功",Toast.LENGTH_SHORT);
     }
 
     @Override
@@ -274,7 +269,7 @@ public class UserManageActivity extends AppCompatActivity implements IUserManage
     @Override
     public void registerSuccess() {
         toLoginView();
-        RunboAppleApplication.toastShow(this,"注册成功",Toast.LENGTH_SHORT);
+        RunboAppleApp.toastShow(this,"注册成功",Toast.LENGTH_SHORT);
     }
 
     @Override

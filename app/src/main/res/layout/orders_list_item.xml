@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:background="@android:color/background_light">
+
+    <LinearLayout
+        android:id="@+id/rl_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="?selectableItemBackground"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:orientation="vertical">
+
+        <!-- 苹果信息 -->
+        <RelativeLayout
+            android:id="@+id/rl_apple"
+            android:layout_width="match_parent"
+            android:layout_height="88dp">
+
+            <ImageView
+                android:id="@+id/imv_apple"
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginStart="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg" />
+
+            <TextView
+                android:id="@+id/tv_apple_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@+id/imv_apple"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="苹果名称"
+                android:textColor="@color/textPrimaryLight"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_apple_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_toEndOf="@+id/imv_apple"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="描述" />
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/imv_apple"
+                android:layout_alignBaseline="@+id/tv_apple_price"
+                android:layout_marginStart="6dp"
+                android:text="￥"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/tv_apple_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/tv"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="20/kg" />
+
+        </RelativeLayout>
+
+        <!-- 合计 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="horizontal"
+            android:gravity="bottom|end">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合计 : ￥"
+                android:textSize="12sp"
+                android:textColor="@color/textPrimaryLight"/>
+
+            <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4000"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimaryLight"/>
+
+            <TextView
+                android:id="@+id/tv_total_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="(200kg)"
+                android:textColor="@color/textPrimaryLight"/>
+
+        </LinearLayout>
+
+        <!-- 按钮栏 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="16dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|end">
+
+            <Button
+                android:id="@+id/btn_1"
+                android:layout_width="72dp"
+                android:layout_height="32dp"
+                android:padding="0dp"
+                android:text="更新物流"
+                android:visibility="gone"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
+
+            <Button
+                android:id="@+id/btn_2"
+                android:layout_width="72dp"
+                android:layout_height="32dp"
+                android:padding="0dp"
+                android:text="查看物流"
+                android:visibility="gone"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
+
+            <Button
+                android:id="@+id/btn_3"
+                android:layout_width="72dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:padding="0dp"
+                android:text="确认收货"
+                android:textColor="@color/colorRed"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

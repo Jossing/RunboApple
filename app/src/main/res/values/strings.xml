@@ -27,9 +27,39 @@
     <string name="et_password_digits">0123456789 qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_-()!</string>
 
 
+    <!-- my posted activity -->
+    <string name="my_posted_activity_title">我发布的</string>
+    <string name="dialog_select_apple_quality">确定苹果的质量</string>
+
+    <!-- settings activity -->
+    <string name="settings_activity_title">设置</string>
+
+    <!-- about activity -->
+    <string name="about_activity_title">关于</string>
+
+    <!-- comment activity -->
+    <string name="comment_activity_title">评论</string>
+
+    <!-- my order activity -->
+    <string name="my_order_activity_title">订单</string>
+
 
     <!-- come from xiaoming -->
     <string name="personal_center">个人中心</string>
+
+    <!-- confer activity -->
+    <string name="order_activity_title">确认订单</string>
+
+    <string name="address_activity_menu">添加</string>
+
+    <string name="address_activity_title">地址管理</string>
+
+    <string name="complete_activity_title">订单完成</string>
+
+    <string name="apple_is_OnTheLoad">苹果正在飞向你的路上啦</string>
     <!-- come from xiaoming -->
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

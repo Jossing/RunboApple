@@ -91,7 +91,8 @@ public class WelcomeActivity extends AppCompatActivity
         // 如果 activity 已经不存在了就跳过这个方法
         if (isDestroyed() || isFinishing()) { return; }
 
-        Glide.with(this).load(pictureURL)
+        Glide.with(getApplicationContext())
+                .load(pictureURL)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //让 Glide 既缓存全尺寸又缓存其他尺寸
                 .crossFade(120)
                 .error(R.drawable.ic_warning_black_128dp)
@@ -103,15 +104,22 @@ public class WelcomeActivity extends AppCompatActivity
      * 延迟 delay 秒后自动进入主界面
      * @param delay 延时
      */
-    private void autoStartMainActivity(long delay) {
+    private void autoStartMainActivity(final long delay) {
         timer = new Timer();
         TimerTask timerTask = new TimerTask() {
+            int repeatCount = (int) (delay / 1000);
             @Override
-            public void run() {
-                startMainActivity();
-            }
+            public void run() { runOnUiThread( new Runnable() { @Override public void run() {
+                String btnSkipText = repeatCount + "s " + getResources().getString(R.string.skip);
+                btnSkip.setText(btnSkipText);
+                if (repeatCount == 0) {
+                    timer.cancel(); // 中止计时器
+                    startMainActivity();
+                }
+                repeatCount -= 1;
+            }});}
         };
-        timer.schedule(timerTask, delay);
+        timer.schedule(timerTask, 0, 1000); // 立即执行，1000ms 重复一次
     }
 
     /**

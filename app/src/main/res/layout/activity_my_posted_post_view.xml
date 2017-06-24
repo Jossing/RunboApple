@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsv_post_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f9f9f9"
+    android:clipChildren="false"
+    android:visibility="gone"
+    android:overScrollMode="never"
+    tools:showIn="@layout/activity_my_posted">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:showIn="@layout/activity_my_posted">
+
+        <!-- 名称 -->
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@android:color/background_light"
+            android:inputType="text"
+            android:lines="1"
+            android:hint="苹果品名"
+            android:textSize="18sp"/>
+
+        <!-- 分割线 -->
+        <View
+            android:id="@+id/s1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/et_name"
+            android:background="#33000000" />
+
+        <!-- 描述 -->
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:layout_below="@+id/s1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@android:color/background_light"
+            android:imeOptions="actionNext"
+            android:lines="6"
+            android:inputType="textMultiLine"
+            android:hint="描述一下你的苹果吧"
+            android:textSize="16sp"/>
+
+        <!-- 照片列表 -->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_picture"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:layout_below="@+id/et_description"
+            android:layout_marginTop="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:overScrollMode="never"
+            android:background="@android:color/background_light"/>
+
+        <!-- 质量 -->
+        <RelativeLayout
+            android:id="@+id/rl_quality"
+            android:layout_width="104dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_picture"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:background="@android:color/background_light">
+
+            <TextView
+                android:id="@+id/tv_quality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="质量"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimaryLight"/>
+
+            <Spinner
+                android:id="@+id/spinner_quality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:spinnerMode="dialog"
+                android:prompt="@string/dialog_select_apple_quality"
+                android:entries="@array/quality"
+                android:background="?selectableItemBackground" />
+
+        </RelativeLayout>
+
+        <!-- 分割线 -->
+        <View
+            android:id="@+id/s"
+            android:layout_width="0.5dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/rl_quality"
+            android:layout_alignTop="@+id/rl_quality"
+            android:layout_alignBottom="@+id/rl_quality"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="#33000000" />
+
+        <!-- 产地 -->
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rv_picture"
+            android:layout_toEndOf="@+id/s"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="@android:color/background_light"
+            android:inputType="text"
+            android:lines="1"
+            android:hint="产地"
+            android:textSize="16sp"/>
+
+        <!-- 分割线 -->
+        <View
+            android:id="@+id/s2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/et_address"
+            android:background="#33000000" />
+
+        <!-- 供货数量 -->
+        <LinearLayout
+            android:id="@+id/ll_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/s2"
+            android:orientation="horizontal"
+            android:background="@android:color/background_light">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="供货数量 :"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimaryLight"/>
+
+            <EditText
+                android:id="@+id/et_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:paddingStart="16dp"
+                android:paddingEnd="0dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:background="@null"
+                android:textCursorDrawable="@null"
+                android:lines="1"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:hint="0"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="0dp"
+                android:paddingEnd="16dp"
+                android:gravity="end"
+                android:text="kg"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimaryLight"/>
+
+        </LinearLayout>
+
+        <!-- 分割线 -->
+        <View
+            android:id="@+id/s3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/ll_count"
+            android:background="#33000000" />
+
+        <!-- 单价 -->
+        <LinearLayout
+            android:id="@+id/ll_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/s3"
+            android:orientation="horizontal"
+            android:background="@android:color/background_light">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="单价 (￥) :"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimaryLight"/>
+
+            <EditText
+                android:id="@+id/et_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="12dp"
+                android:paddingEnd="0dp"
+                android:paddingStart="16dp"
+                android:paddingTop="12dp"
+                android:background="@null"
+                android:textCursorDrawable="@null"
+                android:gravity="end"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:lines="1"
+                android:hint="0"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:paddingStart="0dp"
+                android:paddingEnd="16dp"
+                android:gravity="end"
+                android:text="/kg"
+                android:textSize="16sp"
+                android:textColor="@color/textPrimaryLight"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_post_apple"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/ll_price"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginEnd="72dp"
+            android:background="@drawable/btn_personal_exit"
+            android:text="发布"
+            android:textSize="18sp"
+            android:textColor="@color/textPrimaryDark"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

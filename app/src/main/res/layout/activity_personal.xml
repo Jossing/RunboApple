@@ -14,19 +14,6 @@
         android:layout_marginTop="8dp"
         android:background="@android:color/background_light">
 
-        <TextView
-            android:id="@+id/personal_avatar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="头像"
-            android:textSize="16sp"
-            android:textColor="@color/textPrimaryLight"
-            android:clickable="true"
-            android:background="?selectableItemBackground" />
-
         <ImageView
             android:id="@+id/imv_avatar"
             android:layout_width="48dp"
@@ -35,7 +22,20 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/def_avatar"/>
+            app:srcCompat="@drawable/def_avatar_red" />
+
+        <TextView
+            android:id="@+id/personal_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?selectableItemBackground"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:text="头像"
+            android:textColor="@color/textPrimaryLight"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
@@ -66,7 +66,7 @@
             android:paddingEnd="16dp"
             android:textSize="16sp"
             android:clickable="true"
-            android:background="?selectableItemBackground" />
+            android:foreground="?selectableItemBackground" />
 
     </RelativeLayout>
 
@@ -96,7 +96,7 @@
             android:paddingEnd="@dimen/personal_padding_right"
             android:textSize="16sp"
             android:clickable="true"
-            android:background="?selectableItemBackground" />
+            android:foreground="?selectableItemBackground" />
 
     </RelativeLayout>
 
@@ -126,7 +126,7 @@
             android:paddingEnd="@dimen/personal_padding_right"
             android:textSize="16sp"
             android:clickable="true"
-            android:background="?selectableItemBackground" />
+            android:foreground="?selectableItemBackground" />
 
     </RelativeLayout>
 

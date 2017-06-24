@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#D32F2F</color>
     <color name="colorAccent">#00B0FF</color>
 
+    <color name="windowBackgroundLight">#fafafa</color>
+    <color name="windowBackgroundDark">#303030</color>
+
     <!-- text color-->
     <color name="textPrimaryDark">#deffffff</color>
     <color name="textSecondaryDark">#8affffff</color>
@@ -15,6 +18,10 @@
 
     <!-- come from xiaoming -->
     <color name="windowBackgroundTranslucent">#00000000</color>
+    <color name="colorOrange">#ffb74d</color>
+    <color name="colorBule">#2396f3</color>
+    <color name="colorWhite">#fff</color>
+    <!-- come from xiaoming -->
     <!-- come from xiaoming -->
 
 </resources>

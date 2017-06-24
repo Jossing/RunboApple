@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_insert_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="text"
+            android:lines="1"
+            android:imeOptions="actionNext"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:hint="联系名字"
+            android:background="@drawable/login_user_bg"/>
+
+        <EditText
+            android:id="@+id/edit_insert_phone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:inputType="phone"
+            android:lines="1"
+            android:imeOptions="actionNext"
+            android:hint="联系电话"
+            android:background="@drawable/login_user_bg"/>
+
+        <EditText
+            android:id="@+id/edit_insert_address"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:inputType="text"
+            android:lines="1"
+            android:imeOptions="actionDone"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:hint="收货地址"
+            android:background="@drawable/login_user_bg"/>
+
+    </LinearLayout>
+</FrameLayout>

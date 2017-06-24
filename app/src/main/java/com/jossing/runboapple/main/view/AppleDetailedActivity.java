@@ -13,17 +13,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jossing.runboapple.R;
+import com.jossing.runboapple.RunboAppleApp;
+import com.jossing.runboapple.comment.view.CommentActivity;
 import com.jossing.runboapple.customview.ViewPagerWithIndicator;
 import com.jossing.runboapple.main.adapter.ApplePicturePagerAdapter;
 import com.jossing.runboapple.main.model.Apple;
 import com.jossing.runboapple.main.model.ApplePicture;
 import com.jossing.runboapple.main.presenter.AppleDetailedPresenter;
 import com.jossing.runboapple.main.presenter.IAppleDetailedPresenter;
-import com.jossing.runboapple.usermanage.view.PersonActivity;
+import com.jossing.runboapple.order.view.OrderActivity;
 import com.jossing.runboapple.usermanage.model.User;
+import com.jossing.runboapple.usermanage.view.PersonActivity;
 import com.jossing.runboapple.usermanage.view.UserManageActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cn.bmob.v3.BmobUser;
 
@@ -40,9 +47,11 @@ public class AppleDetailedActivity extends AppCompatActivity
     private TextView tvQuality;
     private TextView tvAddress;
     private TextView tvSeller;
+    private TextView tvComment;
     private TextView tvDescription;
     private TextView tvCount;
     private TextView tvPrice;
+    private TextView tvCreatedAt;
     private Button btnWantBuy;
 
     private Apple apple;
@@ -58,10 +67,12 @@ public class AppleDetailedActivity extends AppCompatActivity
         apple = (Apple) getIntent().getSerializableExtra("apple");
         initWidget();
         showAppleDetailed();
+
+        presenter.queryApple(this, apple.getObjectId());
     }
 
     /**
-     * 替代 ActionBar 为 Toolbar
+     * 替换 ActionBar 为 Toolbar
      */
     private void setToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -81,9 +92,12 @@ public class AppleDetailedActivity extends AppCompatActivity
         tvAddress = (TextView) findViewById(R.id.tv_address);
         tvSeller = (TextView) findViewById(R.id.tv_seller);
         tvSeller.setOnClickListener(this);
+        tvComment = (TextView) findViewById(R.id.tv_comment);
+        tvComment.setOnClickListener(this);
         tvDescription = (TextView) findViewById(R.id.tv_description);
         tvCount = (TextView) findViewById(R.id.tv_count);
         tvPrice = (TextView) findViewById(R.id.tv_price);
+        tvCreatedAt = (TextView) findViewById(R.id.tv_created_at);
         btnWantBuy = (Button) findViewById(R.id.btn_want_buy);
         btnWantBuy.setOnClickListener(this);
 
@@ -120,15 +134,42 @@ public class AppleDetailedActivity extends AppCompatActivity
         tvCount.setText(countStr);
         String priceStr = apple.getPrice() + "/kg";
         tvPrice.setText(priceStr);
-        // 查询卖家信息
-        presenter.querySeller(this, apple.getSeller().getObjectId());
+        tvSeller.setText(apple.getSeller().getUsername());
+
+        SimpleDateFormat sdfFrom = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        SimpleDateFormat sdfTo = new SimpleDateFormat("yyyy年MM月dd日 HH:mm", Locale.getDefault());
+        String createdAtStr = apple.getCreatedAt().substring(0, 16);
+        try {
+            Date createdAt = sdfFrom.parse(createdAtStr);
+            createdAtStr = sdfTo.format(createdAt);
+        } catch (ParseException e) {
+            Log.e("parse createAt string", "error : " + e.getLocalizedMessage());
+        }
+        tvCreatedAt.setText(createdAtStr);
+
+        // 查询评论总数
+        presenter.queryCommentCount(this, apple.getObjectId());
 
         // 获取图片列表
         presenter.queryPictureList(this, apple);
     }
 
     @Override
-    public void onQueryPictureListSuccess(List<ApplePicture> applePictureList) {
+    public void onQueryAppleDone(Apple apple) {
+        this.apple = apple;
+        showAppleDetailed();
+    }
+
+    @Override
+    public void onQueryCommentCountDone(int count) {
+        if (count != -1) {
+            String comment = "用户评论 (" + count + ")";
+            tvComment.setText(comment);
+        }
+    }
+
+    @Override
+    public void onQueryPictureListDone(List<ApplePicture> applePictureList) {
         ApplePicture applePicture = new ApplePicture();
         applePicture.setApple(apple);
         applePicture.setPicture(apple.getPicture());
@@ -137,13 +178,6 @@ public class AppleDetailedActivity extends AppCompatActivity
 
         // 设置适配器
         vpImv.setAdapter(pagerAdapter);
-    }
-
-    @Override
-    public void onQuerySellerSuccess(User seller) {
-        Log.e("seller", seller.getObjectId() + ", " + seller.getUsername());
-        apple.setSeller(seller);
-        tvSeller.setText(seller.getUsername());
     }
 
     @Override
@@ -165,10 +199,24 @@ public class AppleDetailedActivity extends AppCompatActivity
                 intent1.putExtra("anotherUserObjectId", sellerId);
                 startActivity(intent1);
                 break;
+            case R.id.tv_comment:
+                Intent intent3 = new Intent(this, CommentActivity.class);
+                intent3.putExtra("apple", apple);
+                /* 获取评论总数 */
+                String str = tvComment.getText().toString();
+                intent3.putExtra("commentCount", str.substring(5));
+                startActivity(intent3);
+                break;
             case R.id.btn_want_buy:
                 User currentUser = BmobUser.getCurrentUser(this, User.class);
                 if (currentUser != null) {
-                    intentToConferActivity();
+                    if (currentUser.getObjectId().equals(apple.getSeller().getObjectId())) {
+                        RunboAppleApp.toastShow(this, "无法购买自己发布的苹果", Toast.LENGTH_SHORT);
+                    } else if (apple.getCount() == 0) {
+                        RunboAppleApp.toastShow(this, "这批苹果已经卖完了哦", Toast.LENGTH_SHORT);
+                    } else  {
+                        intentToOrderActivity();
+                    }
                 } else {
                     Intent intent2 = new Intent(this, UserManageActivity.class);
                     startActivityForResult(intent2, RequestCode.LOGIN.ordinal());
@@ -184,17 +232,17 @@ public class AppleDetailedActivity extends AppCompatActivity
             if (resultCode == UserManageActivity.ResultCode.LOGIN_SUCCESS.ordinal()) {
                 User currentUser = BmobUser.getCurrentUser(this, User.class);
                 if (currentUser != null) {
-                    intentToConferActivity();
+                    intentToOrderActivity();
                 }
             }
         }
     }
 
     /**
-     * 跳转到交易界面
+     * 跳转到下单界面
      */
-    private void intentToConferActivity() {
-        Intent intent = new Intent(this, ConferActivity.class);
+    private void intentToOrderActivity() {
+        Intent intent = new Intent(this, OrderActivity.class);
         intent.putExtra("apple", apple);
         startActivity(intent);
     }

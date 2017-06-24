@@ -1,4 +1,4 @@
-package com.jossing.runboapple.main.view;
+package com.jossing.runboapple.confer;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

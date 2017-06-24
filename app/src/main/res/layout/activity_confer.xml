@@ -6,7 +6,7 @@
     android:id="@+id/activity_confer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jossing.runboapple.main.view.ConferActivity">
+    tools:context="com.jossing.runboapple.confer.ConferActivity">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"

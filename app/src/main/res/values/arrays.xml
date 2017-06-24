@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="quality">
+        <item>　A 级</item>
+        <item>　B 级</item>
+        <item>　C 级</item>
+        <item>　D 级</item>
+    </string-array>
+</resources>

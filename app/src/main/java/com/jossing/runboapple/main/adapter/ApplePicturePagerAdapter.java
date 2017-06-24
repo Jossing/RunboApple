@@ -2,6 +2,7 @@ package com.jossing.runboapple.main.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.jossing.runboapple.R;
+import com.jossing.runboapple.common.ViewImageActivity;
 import com.jossing.runboapple.main.model.ApplePicture;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ public class ApplePicturePagerAdapter extends PagerAdapter {
      * 创建并初始化 ViewPager 中每一个 ImageView，同时初始化 applePictureLoaded 为全 false
      * @param count 图片个数
      */
-    private void initViewList(Context context, int count) {
+    private void initViewList(final Context context, int count) {
         viewList = new ArrayList<>();
         applePictureLoaded = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -43,6 +46,15 @@ public class ApplePicturePagerAdapter extends PagerAdapter {
             lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
             lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
             imageView.setLayoutParams(lp);
+            final String picturePath = applePictureList.get(i).getPicture().getFileUrl(context);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, ViewImageActivity.class);
+                    intent.putExtra("imagePath", picturePath);
+                    context.startActivity(intent);
+                }
+            });
             viewList.add(imageView);
 
             applePictureLoaded.add(false);
@@ -76,9 +88,10 @@ public class ApplePicturePagerAdapter extends PagerAdapter {
             Log.e("loadPicture", "position: " + position);
             ImageView imageView = getPager(position);
             String url = applePictureList.get(position).getPicture().getFileUrl(context);
-            Glide.with(context)
+            Glide.with(context.getApplicationContext())
                     .load(url)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .error(R.drawable.ic_image_problem_white_88dp)
                     .centerCrop()
                     .into(imageView);
             applePictureLoaded.set(position, true); // 表明这一页已经加载过，无需再次加载
@@ -89,7 +102,7 @@ public class ApplePicturePagerAdapter extends PagerAdapter {
             Log.e("loadPicture", "position: " + positionLeft);
             ImageView imageViewLeft = getPager(positionLeft);
             String urlLeft = applePictureList.get(positionLeft).getPicture().getFileUrl(context);
-            Glide.with(context)
+            Glide.with(context.getApplicationContext())
                     .load(urlLeft)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
@@ -102,7 +115,7 @@ public class ApplePicturePagerAdapter extends PagerAdapter {
             Log.e("loadPicture", "position: " + positionRight);
             ImageView imageViewRight = getPager(positionRight);
             String urlRight = applePictureList.get(positionRight).getPicture().getFileUrl(context);
-            Glide.with(context)
+            Glide.with(context.getApplicationContext())
                     .load(urlRight)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()

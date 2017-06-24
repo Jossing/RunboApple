@@ -76,6 +76,8 @@
                 android:layout_height="42dp"
                 android:background="@null"
                 android:inputType="textPersonName"
+                android:lines="1"
+                android:imeOptions="actionNext"
                 android:digits="@string/et_username_digits"
                 android:hint="请输入账号(注册后无法更改)"/>
         </LinearLayout>
@@ -94,6 +96,8 @@
                 android:layout_height="42dp"
                 android:background="@null"
                 android:inputType="textPassword"
+                android:lines="1"
+                android:imeOptions="actionDone"
                 android:digits="@string/et_password_digits"
                 android:hint="请输入密码"/>
         </LinearLayout>

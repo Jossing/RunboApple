@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light">
+
+    <ImageView
+        android:id="@+id/complete_im"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_complete_red_128dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp"/>
+    <TextView
+        android:id="@+id/complete_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/apple_is_OnTheLoad"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/complete_im"
+        android:textSize="18sp"
+        android:textColor="@color/textPrimaryLight"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/complete_tv"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/complete_btn_order"
+            android:layout_width="96dp"
+            android:layout_height="40dp"
+            android:text="查看订单"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            android:background="@drawable/complete_order"/>
+        <Button
+            android:id="@+id/complete_btn_main"
+            android:layout_width="96dp"
+            android:layout_height="40dp"
+            android:text="回到首页"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            android:background="@drawable/complete_order"/>
+    </LinearLayout>
+
+</RelativeLayout>

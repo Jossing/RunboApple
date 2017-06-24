@@ -27,6 +27,8 @@ public class AppleFGPresenter implements IAppleFGPresenter {
     public void loadAppleList(final Context context, Integer limit) {
         BmobQuery<Apple> queryApple = new BmobQuery<>();
         queryApple.setLimit(limit);
+        queryApple.order("-createdAt");
+        queryApple.include("seller");
         queryApple.findObjects(context, new FindListener<Apple>() {
             @Override
             public void onSuccess(List<Apple> list) {
